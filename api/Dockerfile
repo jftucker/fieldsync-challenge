@@ -1,5 +1,6 @@
 FROM node:alpine
-COPY ./ ./
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json", "./"]
 RUN npm install
 
 EXPOSE 3000

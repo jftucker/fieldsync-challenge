@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   db:
     image: postgres
@@ -20,6 +21,8 @@ services:
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    volumes:
+      - ./api:/usr/src/app
     environment:
       - DB_HOST=postgresdb
       - DB_USER=$POSTGRESDB_USER
