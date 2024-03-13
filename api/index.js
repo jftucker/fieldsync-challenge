@@ -3,6 +3,8 @@ const db = require('./db');
 
 const app = express();
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
@@ -27,6 +29,21 @@ app.get('/api/fetch/:id', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
+  }
+});
+
+app.post('/api/save', async (req, res) => {
+  const { id, name, email, phone, company } = req.body;
+  const query =
+    'INSERT into users (id, name, email, phone, company) values($1, $2, $3, $4, $5) RETURNING id, name, email, phone, company';
+  try {
+    const result = await db.query(query, [id, name, email, phone, company]);
+    return res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err.detail);
+    if (err.detail.includes('already exists.'))
+      return res.status(409).send('User already exists');
+    return res.status(500).send('Internal Server Error');
   }
 });
 
