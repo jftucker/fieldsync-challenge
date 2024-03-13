@@ -13,6 +13,9 @@ services:
       - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
     volumes:
       - db:/var/lib/postgres
+      - ./dataset:/docker-entrypoint-initdb.d
+    networks:
+      - postgres
   api:
     depends_on:
       - db
@@ -24,13 +27,19 @@ services:
     volumes:
       - ./api:/usr/src/app
     environment:
-      - DB_HOST=postgresdb
+      - DB_HOST=db
       - DB_USER=$POSTGRESDB_USER
       - DB_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
       - DB_NAME=$POSTGRESDB_DATABASE
-      - DB_PORT=$POSTGRESDB_DOCKER_PORT
+      - DB_PORT=$POSTGRESDB_LOCAL_PORT
+    networks:
+      - postgres
     stdin_open: true
     tty: true
 
 volumes:
   db:
+
+networks:
+  postgres:
+    driver: bridge
