@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/react';
 import UserTable from './components/UserTable';
 import usePlaceholderUsers from './hooks/usePlaceholderUsers';
 
