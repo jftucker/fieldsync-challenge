@@ -9,7 +9,25 @@ node --version
 npm --version
 ```
 
-After cloning this repository, build the Docker images from the parent directory:
+After cloning this repository, cd into api:
+
+```sh
+cd ./api
+```
+
+Install the dependencies:
+
+```sh
+npm i
+```
+
+cd back into the parent directory:
+
+```sh
+cd ..
+```
+
+build the Docker images from the parent directory:
 
 ```sh
 docker-compose build
@@ -29,13 +47,13 @@ Open a new terminal and CD into the front end directory:
 cd ./frontend
 ```
 
-Install the dependencies
+Install the dependencies:
 
 ```sh
 npm i
 ```
 
-Run the frontend
+Run the frontend:
 
 ```sh
 npm run dev
