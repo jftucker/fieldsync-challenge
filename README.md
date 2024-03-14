@@ -77,7 +77,7 @@ Vite was used to initialize a React/TypeScript environment. A careful examinatio
 
 ## Testing
 
-To run tests:
+To run tests, cd into the front end directory and run:
 
 ```sh
 npm run test:ui
