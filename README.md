@@ -57,6 +57,12 @@ A very simple Express backend is used. This could see heavy refactoring and like
 
 Vite was used to initialize a React/TypeScript environment. A careful examination of the commits would show that the initial fetching of the JSON Placeholder endpoint utilized the correct useEffect pattern, including the use of an abort controller. The useEffect pattern is quite verbose, so I elected to use React Query for server state and React Context for client state. This is likely excessive for this application, but it demonstrates the way in which I could handle state in a medium-sized application. Further needs could demand the use of more robust global state libraries such as Zustand or Redux (though Redux has better alternatives for more recently designed applications). Chakra was used as a simple way to make a more appealing UX. Improvements could be found in some more robust error handling, I've currently elected to fail silently rather than providing an error toast.
 
-# Further Considerations
+# Testing
 
-The largest missing portion of this challenge is a test suite. Testing of the endpoints with a mocked DB would be desirable, as would be the behavior of the individual components of the frontend. This is more than possible to achieve but likely would be difficult considering the timeframe and my focus on completing the requested requirements.
+To run tests:
+
+```sh
+npm run test:ui
+```
+
+I've elected to add some tests to the front end, since these are more involved and demonstrative of my test ability
