@@ -8,7 +8,7 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { User } from '../react-query/hooks/usePlaceholderUsers';
+import { User } from '../react-query/services/userService';
 
 interface Props {
   users?: User[];
