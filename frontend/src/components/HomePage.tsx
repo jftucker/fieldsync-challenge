@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import SelectedUserContext from '../contexts/selectedUserContext';
 import usePlaceholderUsers from '../react-query/hooks/usePlaceholderUsers';
 import UserTable from './UserTable';
-import { Button } from '@chakra-ui/react';
+import { Button, Heading } from '@chakra-ui/react';
 import { User } from '../react-query/services/userService';
 import useUsers from '../react-query/hooks/useUsers';
 
@@ -15,7 +15,14 @@ const HomePage = () => {
   };
 
   if (!placeholderUsers) return <Button onClick={handleClick}>Download</Button>;
-  return <UserTable users={placeholderUsers} onSaveUser={handleSaveUser} />;
+  return (
+    <>
+      <Heading as='h2' size='2xl' paddingBottom={'10px'}>
+        Users From JSON Placeholder
+      </Heading>
+      <UserTable users={placeholderUsers} onSaveUser={handleSaveUser} />;
+    </>
+  );
 };
 
 export default HomePage;
