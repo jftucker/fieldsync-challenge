@@ -9,6 +9,7 @@ const usePlaceholderUsers = () => {
   return useQuery<User[], Error>({
     queryKey: CACHE_KEY_PLACEHOLDER_USERS,
     queryFn: jsonPlaceholderClient.getAll,
+    enabled: false,
   });
 };
 
