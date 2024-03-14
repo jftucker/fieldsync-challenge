@@ -3,6 +3,7 @@ import UserTable from './UserTable';
 
 const SavedUsers = () => {
   const { data: users } = useUsers();
+
   return <UserTable users={users} />;
 };
 

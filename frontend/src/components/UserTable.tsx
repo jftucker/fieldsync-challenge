@@ -9,6 +9,7 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { User } from '../react-query/services/userService';
+import { Link } from 'react-router-dom';
 
 interface Props {
   users?: User[];
@@ -38,7 +39,9 @@ const UserTable = ({ users, onDownload }: Props) => {
               <Td>{user.phone}</Td>
               {onDownload && (
                 <Td>
-                  <Button onClick={() => onDownload(user)}>Download</Button>
+                  <Link to='/save'>
+                    <Button onClick={() => onDownload(user)}>Download</Button>
+                  </Link>
                 </Td>
               )}
             </Tr>
