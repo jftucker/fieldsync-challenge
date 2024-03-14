@@ -59,4 +59,4 @@ Vite was used to initialize a React/TypeScript environment. A careful examinatio
 
 # Further Considerations
 
-The largest missing portion of this challenge is a test suite. Testing of the endpoints with a mocked DB would be desirable, as would be the behavior of the individual components of the frontend. This is more than possible to achieve but likely would be difficult considering the timeframe and requirements.
+The largest missing portion of this challenge is a test suite. Testing of the endpoints with a mocked DB would be desirable, as would be the behavior of the individual components of the frontend. This is more than possible to achieve but likely would be difficult considering the timeframe and my focus on completing the requested requirements.
