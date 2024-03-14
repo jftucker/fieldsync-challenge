@@ -1,25 +1,16 @@
 import { useReducer } from 'react';
-import UserTable from './components/UserTable';
+import { RouterProvider } from 'react-router-dom';
+import HomePage from './components/HomePage';
 import SelectedUserContext from './contexts/selectedUserContext';
-import usePlaceholderUsers from './react-query/hooks/usePlaceholderUsers';
-import useUsers from './react-query/hooks/useUsers';
 import selectedUserReducer from './reducers/selectedUserReducer';
-import SaveSelectedUser from './components/SaveSelectedUser';
+import router from './routes';
 
 function App() {
-  const { data: placeholderUsers } = usePlaceholderUsers();
-  const { data: users } = useUsers();
   const [selectedUser, dispatch] = useReducer(selectedUserReducer, undefined);
 
   return (
     <SelectedUserContext.Provider value={{ selectedUser, dispatch }}>
-      <UserTable
-        users={placeholderUsers}
-        onDownload={user => dispatch({ type: 'SELECT', user })}
-      />
-      <SaveSelectedUser />
-
-      <UserTable users={users} />
+      <RouterProvider router={router}></RouterProvider>
     </SelectedUserContext.Provider>
   );
 }
