@@ -1,7 +1,8 @@
 import { Button } from '@chakra-ui/react';
+import UserTable from './components/UserTable';
 
 function App() {
-  return <Button>Download</Button>;
+  return <UserTable />;
 }
 
 export default App;
