@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import jsonPlaceholderClient from '../services/json-placeholder-client';
+import axios from 'axios';
 
 interface Company {
   name: string;
@@ -17,14 +17,17 @@ interface User {
 
 const usePlaceholderUsers = () => {
   const fetchUsers = () =>
-    jsonPlaceholderClient.get<User[]>('/users').then(res => res.data);
+    axios
+      .create({
+        baseURL: 'https://jsonplaceholder.typicode.com/',
+      })
+      .get<User[]>('/users')
+      .then(res => res.data);
 
-  const query = useQuery<User[], Error>({
-    queryKey: ['users'],
+  return useQuery<User[], Error>({
+    queryKey: ['jsonPlaceholderUsers'],
     queryFn: fetchUsers,
   });
-
-  return query;
 };
 
 export default usePlaceholderUsers;
