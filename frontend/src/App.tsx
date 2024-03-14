@@ -1,14 +1,17 @@
 import UserTable from './components/UserTable';
 import usePlaceholderUsers from './hooks/usePlaceholderUsers';
+import useUsers from './hooks/useUsers';
 
 function App() {
-  const { data: placeholderUsers, error, isLoading } = usePlaceholderUsers();
+  const { data: placeholderUsers } = usePlaceholderUsers();
+  const { data: users } = useUsers();
 
-  if (isLoading) return <p>Loading...</p>;
-
-  if (error) return <p>{error.message}</p>;
-
-  return <UserTable users={placeholderUsers} />;
+  return (
+    <>
+      <UserTable users={placeholderUsers} />
+      <UserTable users={users} />
+    </>
+  );
 }
 
 export default App;
