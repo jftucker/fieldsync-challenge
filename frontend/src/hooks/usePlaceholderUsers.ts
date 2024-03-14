@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import jsonPlaceholderClient from '../services/json-placeholder-client';
-import { CanceledError } from 'axios';
 
 interface Company {
   name: string;
@@ -17,27 +16,15 @@ interface User {
 }
 
 const usePlaceholderUsers = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [error, setError] = useState('');
+  const fetchUsers = () =>
+    jsonPlaceholderClient.get<User[]>('/users').then(res => res.data);
 
-  useEffect(() => {
-    const controller = new AbortController();
+  const query = useQuery<User[], Error>({
+    queryKey: ['users'],
+    queryFn: fetchUsers,
+  });
 
-    jsonPlaceholderClient
-      .get<User[]>('/users', { signal: controller.signal })
-      .then(res => {
-        console.log(res.data);
-        setUsers(res.data);
-      })
-      .catch(err => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-      });
-
-    return () => controller.abort();
-  }, []);
-
-  return { users, error };
+  return query;
 };
 
 export default usePlaceholderUsers;
