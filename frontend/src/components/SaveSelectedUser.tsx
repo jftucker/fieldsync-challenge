@@ -1,10 +1,19 @@
-import { Box, Button, Heading, Stack, StackDivider } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Stack,
+  StackDivider,
+  Text,
+} from '@chakra-ui/react';
 import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import SelectedUserContext from '../contexts/selectedUserContext';
 import useAddUser from '../react-query/hooks/useAddUser';
-import { Navigate } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react';
-import useUsers from '../react-query/hooks/useUsers';
 
 const SaveSelectedUser = () => {
   const { selectedUser, dispatch } = useContext(SelectedUserContext);
