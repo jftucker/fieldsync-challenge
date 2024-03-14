@@ -65,4 +65,4 @@ To run tests:
 npm run test:ui
 ```
 
-I've elected to add some tests to the front end, since these are more involved and demonstrative of my test ability
+I've elected to add testing framework to the front end, with a short example of a potential test. This shows how a test suite could run on the front end, as well as how to mock the back end.
