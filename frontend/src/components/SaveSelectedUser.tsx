@@ -4,6 +4,7 @@ import SelectedUserContext from '../contexts/selectedUserContext';
 import useAddUser from '../react-query/hooks/useAddUser';
 import { Navigate } from 'react-router-dom';
 import { Card, CardHeader, CardBody, CardFooter, Text } from '@chakra-ui/react';
+import useUsers from '../react-query/hooks/useUsers';
 
 const SaveSelectedUser = () => {
   const { selectedUser, dispatch } = useContext(SelectedUserContext);

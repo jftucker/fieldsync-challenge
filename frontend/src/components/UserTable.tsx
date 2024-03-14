@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { User } from '../react-query/services/userService';
 import { Link } from 'react-router-dom';
+import useUsers from '../react-query/hooks/useUsers';
 
 interface Props {
   users?: User[];
@@ -17,7 +18,14 @@ interface Props {
 }
 
 const UserTable = ({ users, onDownload }: Props) => {
+  const { data: savedUsers } = useUsers();
+  const isDisabledUser = (user: User) => {
+    if (!savedUsers) return false;
+    return savedUsers?.filter(savedUser => savedUser.id === user.id).length > 0;
+  };
+
   if (!users) return <></>;
+
   return (
     <TableContainer>
       <Table variant='simple'>
@@ -40,7 +48,11 @@ const UserTable = ({ users, onDownload }: Props) => {
               {onDownload && (
                 <Td>
                   <Link to='/save'>
-                    <Button onClick={() => onDownload(user)}>Download</Button>
+                    <Button
+                      isDisabled={isDisabledUser(user)}
+                      onClick={() => onDownload(user)}>
+                      Download
+                    </Button>
                   </Link>
                 </Td>
               )}
