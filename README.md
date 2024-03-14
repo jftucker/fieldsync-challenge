@@ -75,7 +75,7 @@ A very simple Express backend is used. This could see heavy refactoring and like
 
 Vite was used to initialize a React/TypeScript environment. A careful examination of the commits would show that the initial fetching of the JSON Placeholder endpoint utilized the correct useEffect pattern, including the use of an abort controller. The useEffect pattern is quite verbose, so I elected to use React Query for server state and React Context for client state. This is likely excessive for this application, but it demonstrates the way in which I could handle state in a medium-sized application. Further needs could demand the use of more robust global state libraries such as Zustand or Redux (though Redux has better alternatives for more recently designed applications). Chakra was used as a simple way to make a more appealing UX. Improvements could be found in some more robust error handling, I've currently elected to fail silently rather than providing an error toast.
 
-# Testing
+## Testing
 
 To run tests:
 
@@ -84,3 +84,7 @@ npm run test:ui
 ```
 
 I've elected to add testing framework to the front end, with a short example of a potential test. This shows how a test suite could run on the front end, as well as how to mock the back end.
+
+## docker-compose
+
+The current docker-compose overwrites the api node_modules on mount, unfortunately the fix here is a bit hacky, but since I have found this problem only one hour before submission it will have to do. The solution will have to be to install npm dependencies locally and then copy them to the container. This is not an elegant solution, but time requires a working solution rather than a broken ideal one. Fixing this would be my first priority given more time, and not discovering the problem at the last minute when checking against a friends machine.
