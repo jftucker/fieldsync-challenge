@@ -19,7 +19,7 @@ const useUsers = () => {
   const fetchUsers = () =>
     axios
       .create({
-        baseURL: 'http://127.0.0.1:3000/api/fetch',
+        baseURL: 'http://127.0.0.1:3000/api',
       })
       .get<User[]>('/fetch/')
       .then(res => res.data);
