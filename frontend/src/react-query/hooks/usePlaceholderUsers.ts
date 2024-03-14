@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { CACHE_KEY_PLACEHOLDER_USERS } from '../constants';
 
 interface Company {
   name: string;
@@ -25,7 +26,7 @@ const usePlaceholderUsers = () => {
       .then(res => res.data);
 
   return useQuery<User[], Error>({
-    queryKey: ['jsonPlaceholderUsers'],
+    queryKey: CACHE_KEY_PLACEHOLDER_USERS,
     queryFn: fetchUsers,
   });
 };

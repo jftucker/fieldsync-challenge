@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { CACHE_KEY_USERS } from '../constants';
 
 interface Company {
   name: string;
@@ -25,7 +26,7 @@ const useUsers = () => {
       .then(res => res.data);
 
   return useQuery<User[], Error>({
-    queryKey: ['users'],
+    queryKey: CACHE_KEY_USERS,
     queryFn: fetchUsers,
   });
 };

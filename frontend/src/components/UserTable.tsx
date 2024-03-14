@@ -1,4 +1,5 @@
 import {
+  Button,
   Table,
   TableContainer,
   Tbody,
@@ -7,13 +8,15 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { User } from '../hooks/usePlaceholderUsers';
+import { User } from '../react-query/hooks/usePlaceholderUsers';
 
 interface Props {
-  users: User[];
+  users?: User[];
+  onDownload?: (user: User) => void;
 }
 
-const UserTable = ({ users }: Props) => {
+const UserTable = ({ users, onDownload }: Props) => {
+  if (!users) return <></>;
   return (
     <TableContainer>
       <Table variant='simple'>
@@ -23,6 +26,7 @@ const UserTable = ({ users }: Props) => {
             <Th>Company</Th>
             <Th>Email</Th>
             <Th>Phone</Th>
+            {onDownload && <Th></Th>}
           </Tr>
         </Thead>
         <Tbody>
@@ -32,6 +36,11 @@ const UserTable = ({ users }: Props) => {
               <Td>{user.company.name}</Td>
               <Td>{user.email}</Td>
               <Td>{user.phone}</Td>
+              {onDownload && (
+                <Td>
+                  <Button onClick={() => onDownload(user)}>Download</Button>
+                </Td>
+              )}
             </Tr>
           ))}
         </Tbody>
