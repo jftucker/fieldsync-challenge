@@ -8,15 +8,13 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import usePlaceholderUsers from '../hooks/usePlaceholderUsers';
+import { User } from '../hooks/usePlaceholderUsers';
 
-const UserTable = () => {
-  const { data: placeholderUsers, error, isLoading } = usePlaceholderUsers();
+interface Props {
+  users: User[];
+}
 
-  if (isLoading) return <p>Loading...</p>;
-
-  if (error) return <p>{error.message}</p>;
-
+const UserTable = ({ users }: Props) => {
   return (
     <TableContainer>
       <Table variant='simple'>
@@ -30,7 +28,7 @@ const UserTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {placeholderUsers?.map(user => (
+          {users?.map(user => (
             <Tr key={user.id}>
               <Td>{user.name}</Td>
               <Td>{user.company.name}</Td>
