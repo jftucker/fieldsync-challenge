@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { CACHE_KEY_PLACEHOLDER_USERS } from '../constants';
+import JSONPlaceholderClient from '../services/JSONPlaceholderClient';
 
 interface Company {
   name: string;
@@ -16,18 +16,12 @@ export interface User {
   phone: string;
 }
 
-const usePlaceholderUsers = () => {
-  const fetchUsers = () =>
-    axios
-      .create({
-        baseURL: 'https://jsonplaceholder.typicode.com/',
-      })
-      .get<User[]>('/users')
-      .then(res => res.data);
+const jsonPlaceholderClient = new JSONPlaceholderClient<User>('/users');
 
+const usePlaceholderUsers = () => {
   return useQuery<User[], Error>({
     queryKey: CACHE_KEY_PLACEHOLDER_USERS,
-    queryFn: fetchUsers,
+    queryFn: jsonPlaceholderClient.getAll,
   });
 };
 
