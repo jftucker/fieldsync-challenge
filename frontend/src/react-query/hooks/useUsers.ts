@@ -6,6 +6,7 @@ const useUsers = () => {
   return useQuery<User[], Error>({
     queryKey: CACHE_KEY_USERS,
     queryFn: fetchUsers.getAll,
+    enabled: false,
   });
 };
 
