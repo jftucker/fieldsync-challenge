@@ -1,10 +1,9 @@
+import { Button, Heading } from '@chakra-ui/react';
 import { useContext } from 'react';
 import SelectedUserContext from '../contexts/selectedUserContext';
 import usePlaceholderUsers from '../react-query/hooks/usePlaceholderUsers';
-import UserTable from './UserTable';
-import { Button, Heading } from '@chakra-ui/react';
 import { User } from '../react-query/services/userService';
-import useUsers from '../react-query/hooks/useUsers';
+import UserTable from './UserTable';
 
 const HomePage = () => {
   const { dispatch } = useContext(SelectedUserContext);
