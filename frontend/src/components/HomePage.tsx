@@ -8,7 +8,7 @@ import UserTable from './UserTable';
 const HomePage = () => {
   const { dispatch } = useContext(SelectedUserContext);
   const { data: placeholderUsers } = usePlaceholderUsers();
-  const { data: users } = useUsers();
+
   return (
     <>
       <UserTable
@@ -16,7 +16,6 @@ const HomePage = () => {
         onDownload={user => dispatch({ type: 'SELECT', user })}
       />
       <SaveSelectedUser />
-      <UserTable users={users} />
     </>
   );
 };

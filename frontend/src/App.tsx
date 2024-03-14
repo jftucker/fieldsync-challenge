@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import HomePage from './components/HomePage';
 import SelectedUserContext from './contexts/selectedUserContext';
 import selectedUserReducer from './reducers/selectedUserReducer';
 import router from './routes';
