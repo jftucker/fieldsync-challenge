@@ -1,7 +1,7 @@
+import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/react';
 import HomePage from '../../components/HomePage';
 import AllProviders from '../AllProviders';
-import '@testing-library/jest-dom/vitest';
 import { server } from '../mocks/server';
 
 beforeAll(() => server.listen());
