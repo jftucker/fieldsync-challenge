@@ -18,7 +18,6 @@ const UserTable = ({ users }: Props) => {
   return (
     <TableContainer>
       <Table variant='simple'>
-        <TableCaption>Available Users</TableCaption>
         <Thead>
           <Tr>
             <Th>Name</Th>
