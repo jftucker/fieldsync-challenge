@@ -1,20 +1,26 @@
+import { useReducer } from 'react';
 import UserTable from './components/UserTable';
-import useAddUser from './react-query/hooks/useAddUser';
+import SelectedUserContext from './contexts/selectedUserContext';
 import usePlaceholderUsers from './react-query/hooks/usePlaceholderUsers';
 import useUsers from './react-query/hooks/useUsers';
+import selectedUserReducer from './reducers/selectedUserReducer';
+import SaveSelectedUser from './components/SaveSelectedUser';
 
 function App() {
-  const addUser = useAddUser();
   const { data: placeholderUsers } = usePlaceholderUsers();
   const { data: users } = useUsers();
+  const [selectedUser, dispatch] = useReducer(selectedUserReducer, undefined);
 
   return (
-    <>
-      <UserTable users={placeholderUsers} onDownload={addUser.mutate} />
-      {addUser.error && <p>{addUser.error.message}</p>}
-      {addUser.isLoading && <p>Adding...</p>}
+    <SelectedUserContext.Provider value={{ selectedUser, dispatch }}>
+      <UserTable
+        users={placeholderUsers}
+        onDownload={user => dispatch({ type: 'SELECT', user })}
+      />
+      <SaveSelectedUser />
+
       <UserTable users={users} />
-    </>
+    </SelectedUserContext.Provider>
   );
 }
 
