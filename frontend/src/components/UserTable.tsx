@@ -14,12 +14,13 @@ import useUsers from '../react-query/hooks/useUsers';
 
 interface Props {
   users?: User[];
-  onDownload?: (user: User) => void;
+  onSaveUser?: (user: User) => void;
 }
 
-const UserTable = ({ users, onDownload }: Props) => {
-  const { data: savedUsers } = useUsers();
+const UserTable = ({ users, onSaveUser: onSaveUser }: Props) => {
+  const { data: savedUsers, refetch } = useUsers();
   const isDisabledUser = (user: User) => {
+    refetch();
     if (!savedUsers) return false;
     return savedUsers?.filter(savedUser => savedUser.id === user.id).length > 0;
   };
@@ -35,7 +36,7 @@ const UserTable = ({ users, onDownload }: Props) => {
             <Th>Company</Th>
             <Th>Email</Th>
             <Th>Phone</Th>
-            {onDownload && <Th></Th>}
+            {onSaveUser && <Th></Th>}
           </Tr>
         </Thead>
         <Tbody>
@@ -45,13 +46,13 @@ const UserTable = ({ users, onDownload }: Props) => {
               <Td>{user.company.name}</Td>
               <Td>{user.email}</Td>
               <Td>{user.phone}</Td>
-              {onDownload && (
+              {onSaveUser && (
                 <Td>
                   <Link to='/save'>
                     <Button
                       isDisabled={isDisabledUser(user)}
-                      onClick={() => onDownload(user)}>
-                      Download
+                      onClick={() => onSaveUser(user)}>
+                      Save
                     </Button>
                   </Link>
                 </Td>
